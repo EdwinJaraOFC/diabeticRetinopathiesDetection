@@ -1,10 +1,5 @@
-!pip install streamlit -q
-!pip install streamlit-lottie
-!pip install Pillow
-
 import streamlit as st
 import pandas as pd
-from streamlit_lottie import st_lottie
 from PIL import Image
 
 # Título de la aplicación
