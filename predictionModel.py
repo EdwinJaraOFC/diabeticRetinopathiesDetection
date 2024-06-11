@@ -1,4 +1,6 @@
 import streamlit as st
+import requests
+from streamlit_lottie import st_lottie
 import pandas as pd
 from PIL import Image
 
@@ -15,8 +17,17 @@ if uploaded_file is not None:
     # Mostrar el DataFrame
     st.write(df)
 
+# Función para animaciones
+def load_lottieurl(url):
+    r = requests.get(url)
+    if r.status_code != 200:
+        return None
+    return r.json()
+
 lottie_coding = load_lottieurl("https://lottie.host/aa4d3448-0f1f-4030-a0b0-3f4f9e6ff0a1/wIUZV63gdS.json")
-imagen_random = Image.open("https://www.metodobenozzi.com/wp-content/uploads/2022/12/Cuando-aparece-la-retinopatia-diabetica.jpg")
+
+# Cargar la imagen desde un archivo local
+imagen_random = Image.open("imagen.jpg")  # Reemplaza "imagen.jpg" con la ruta de tu archivo de imagen
 
 with st.container():
   st.subheader("Proyecto Final Machine Learning")
@@ -34,3 +45,4 @@ with st.container():
   
   with right_column:
     st_lottie(lottie_coding, height=300, key="coding")
+    st.image(imagen_random, caption="Imagen de ejemplo", use_column_width=True)
